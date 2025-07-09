@@ -80,19 +80,21 @@
 
     .filters-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
       align-items: end;
 
       .filter-group {
         display: flex;
         flex-direction: column;
+        min-width: 0; // Prevent overflow
 
         .filter-label {
           font-weight: 600;
           color: #495057;
           margin-bottom: 0.5rem;
           font-size: 0.9rem;
+          white-space: nowrap;
         }
 
         .filter-input,
@@ -102,6 +104,7 @@
           border-radius: 6px;
           font-size: 0.9rem;
           transition: all 0.3s ease;
+          min-width: 0; // Prevent overflow
 
           &:focus {
             outline: none;
@@ -114,14 +117,18 @@
           display: flex;
           align-items: center;
           gap: 0.5rem;
+          width: 100%;
 
           .rate-input {
             flex: 1;
+            min-width: 0; // Prevent overflow
+            max-width: calc(50% - 0.25rem);
           }
 
           .rate-separator {
             color: #6c757d;
             font-weight: 600;
+            flex-shrink: 0;
           }
         }
 
@@ -218,8 +225,24 @@
       gap: 1rem;
 
       .filter-group .rate-range {
+        .rate-input {
+          max-width: calc(50% - 0.25rem);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .search-filters-section {
+    .search-form .filters-row {
+      .filter-group .rate-range {
         flex-direction: column;
         gap: 0.5rem;
+
+        .rate-input {
+          max-width: 100%;
+        }
 
         .rate-separator {
           display: none;

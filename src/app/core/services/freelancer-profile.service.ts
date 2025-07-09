@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
   HttpParams,
-} from '@angular/common/http';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+} from "@angular/common/http";
+import { Observable, BehaviorSubject, throwError } from "rxjs";
+import { catchError, tap, map } from "rxjs/operators";
 import {
   FreelancerProfile,
   CreateFreelancerProfileDto,
@@ -14,13 +14,13 @@ import {
   FreelancerProfileResponse,
   FreelancerSearchCriteria,
   FreelancerSearchResult,
-} from '../models/freelancer-profile.model';
+} from "../models/freelancer-profile.model";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class FreelancerProfileService {
-  private apiUrl = 'http://localhost:8080/api/employees/';
+  private apiUrl = "http://localhost:8080/api/employees/";
   private profileSubject = new BehaviorSubject<FreelancerProfile | null>(null);
   public profile$ = this.profileSubject.asObservable();
 
@@ -29,8 +29,8 @@ export class FreelancerProfileService {
   private getHttpOptions() {
     return {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Accept: "application/json",
       }),
     };
   }
@@ -38,7 +38,7 @@ export class FreelancerProfileService {
   private getMultipartHttpOptions() {
     return {
       headers: new HttpHeaders({
-        Accept: 'application/json',
+        Accept: "application/json",
         // Don't set Content-Type for multipart/form-data, let the browser set it
       }),
     };
@@ -52,7 +52,7 @@ export class FreelancerProfileService {
       .post<FreelancerProfile>(this.apiUrl, profile, this.getHttpOptions())
       .pipe(
         tap((response) => {
-          console.log('Profile created:', response);
+          console.log("Profile created:", response);
           this.setCurrentProfile(response);
         }),
         catchError(this.handleError.bind(this))
@@ -74,7 +74,7 @@ export class FreelancerProfileService {
       )
       .pipe(
         tap((response) => {
-          console.log('Profile updated:', response);
+          console.log("Profile updated:", response);
           this.setCurrentProfile(response);
         }),
         catchError(this.handleError.bind(this))
@@ -87,7 +87,7 @@ export class FreelancerProfileService {
   getProfile(id: number): Observable<FreelancerProfile> {
     return this.http.get<FreelancerProfile>(`${this.apiUrl}/${id}`).pipe(
       tap((response) => {
-        console.log('Profile retrieved:', response);
+        console.log("Profile retrieved:", response);
       }),
       catchError(this.handleError.bind(this))
     );
@@ -99,7 +99,7 @@ export class FreelancerProfileService {
   getAllProfiles(): Observable<FreelancerProfile[]> {
     return this.http.get<FreelancerProfile[]>(this.apiUrl).pipe(
       tap((response) => {
-        console.log('All profiles retrieved:', response);
+        console.log("All profiles retrieved:", response);
       }),
       catchError(this.handleError.bind(this))
     );
@@ -114,42 +114,42 @@ export class FreelancerProfileService {
     limit: number = 10
   ): Observable<FreelancerSearchResult> {
     let params = new HttpParams();
-    params = params.set('page', page.toString());
-    params = params.set('limit', limit.toString());
+    params = params.set("page", page.toString());
+    params = params.set("limit", limit.toString());
 
     if (criteria.skills && criteria.skills.length > 0) {
-      params = params.set('skills', criteria.skills.join(','));
+      params = params.set("skills", criteria.skills.join(","));
     }
     if (criteria.location) {
-      params = params.set('location', criteria.location);
+      params = params.set("location", criteria.location);
     }
     if (criteria.hourlyRateMin !== undefined) {
-      params = params.set('hourlyRateMin', criteria.hourlyRateMin.toString());
+      params = params.set("hourlyRateMin", criteria.hourlyRateMin.toString());
     }
     if (criteria.hourlyRateMax !== undefined) {
-      params = params.set('hourlyRateMax', criteria.hourlyRateMax.toString());
+      params = params.set("hourlyRateMax", criteria.hourlyRateMax.toString());
     }
     if (criteria.experienceMin !== undefined) {
-      params = params.set('experienceMin', criteria.experienceMin.toString());
+      params = params.set("experienceMin", criteria.experienceMin.toString());
     }
     if (criteria.availability) {
-      params = params.set('availability', criteria.availability);
+      params = params.set("availability", criteria.availability);
     }
     if (criteria.rating !== undefined) {
-      params = params.set('rating', criteria.rating.toString());
+      params = params.set("rating", criteria.rating.toString());
     }
     if (criteria.languages && criteria.languages.length > 0) {
-      params = params.set('languages', criteria.languages.join(','));
+      params = params.set("languages", criteria.languages.join(","));
     }
     if (criteria.category) {
-      params = params.set('category', criteria.category);
+      params = params.set("category", criteria.category);
     }
 
     return this.http
       .get<FreelancerSearchResult>(`${this.apiUrl}/search`, { params })
       .pipe(
         tap((response) => {
-          console.log('Search results:', response);
+          console.log("Search results:", response);
         }),
         catchError(this.handleError.bind(this))
       );
@@ -161,7 +161,7 @@ export class FreelancerProfileService {
   deleteProfile(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
       tap(() => {
-        console.log('Profile deleted:', id);
+        console.log("Profile deleted:", id);
         if (this.profileSubject.value?.id === id) {
           this.profileSubject.next(null);
         }
@@ -175,7 +175,7 @@ export class FreelancerProfileService {
    */
   uploadResume(file: File): Observable<string> {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
     return this.http
       .post<{ url: string }>(
@@ -186,7 +186,7 @@ export class FreelancerProfileService {
       .pipe(
         map((response) => response.url), // Use map instead of switchMap
         tap((url) => {
-          console.log('Resume uploaded:', url);
+          console.log("Resume uploaded:", url);
         }),
         catchError(this.handleError.bind(this))
       );
@@ -197,7 +197,7 @@ export class FreelancerProfileService {
    */
   uploadProfileImage(file: File): Observable<string> {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
     return this.http
       .post<{ url: string }>(
@@ -208,7 +208,7 @@ export class FreelancerProfileService {
       .pipe(
         map((response) => response.url), // Use map instead of switchMap
         tap((url) => {
-          console.log('Profile image uploaded:', url);
+          console.log("Profile image uploaded:", url);
         }),
         catchError(this.handleError.bind(this))
       );
@@ -261,7 +261,7 @@ export class FreelancerProfileService {
       )
       .pipe(
         tap((response) => {
-          console.log('Profile status updated:', response);
+          console.log("Profile status updated:", response);
           if (this.profileSubject.value?.id === id) {
             this.setCurrentProfile(response);
           }
@@ -331,7 +331,7 @@ export class FreelancerProfileService {
   getProfileStats(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}/stats`).pipe(
       tap((response) => {
-        console.log('Profile stats:', response);
+        console.log("Profile stats:", response);
       }),
       catchError(this.handleError.bind(this))
     );
@@ -352,7 +352,7 @@ export class FreelancerProfileService {
       )
       .pipe(
         tap((response) => {
-          console.log('Availability updated:', response);
+          console.log("Availability updated:", response);
           if (this.profileSubject.value?.id === id) {
             this.setCurrentProfile(response);
           }
@@ -365,13 +365,13 @@ export class FreelancerProfileService {
    * Get featured profiles
    */
   getFeaturedProfiles(limit: number = 10): Observable<FreelancerProfile[]> {
-    const params = new HttpParams().set('limit', limit.toString());
+    const params = new HttpParams().set("limit", limit.toString());
 
     return this.http
       .get<FreelancerProfile[]>(`${this.apiUrl}/featured`, { params })
       .pipe(
         tap((response) => {
-          console.log('Featured profiles:', response);
+          console.log("Featured profiles:", response);
         }),
         catchError(this.handleError.bind(this))
       );
@@ -383,13 +383,13 @@ export class FreelancerProfileService {
   getRecentlyActiveProfiles(
     limit: number = 10
   ): Observable<FreelancerProfile[]> {
-    const params = new HttpParams().set('limit', limit.toString());
+    const params = new HttpParams().set("limit", limit.toString());
 
     return this.http
       .get<FreelancerProfile[]>(`${this.apiUrl}/recent`, { params })
       .pipe(
         tap((response) => {
-          console.log('Recently active profiles:', response);
+          console.log("Recently active profiles:", response);
         }),
         catchError(this.handleError.bind(this))
       );
@@ -405,7 +405,7 @@ export class FreelancerProfileService {
       .get<FreelancerProfile[]>(`${this.apiUrl}/mock`)
       .pipe(
         tap((data) => {
-          console.log(' freelancers data:', data);
+          console.log(" freelancers data:", data);
           freelancersData.push(...data);
         }),
         catchError(this.handleError.bind(this))
@@ -422,7 +422,7 @@ export class FreelancerProfileService {
    * Error handler
    */
   private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'An unknown error occurred';
+    let errorMessage = "An unknown error occurred";
 
     if (error.error instanceof ErrorEvent) {
       // Client-side error
@@ -431,33 +431,33 @@ export class FreelancerProfileService {
       // Server-side error
       switch (error.status) {
         case 400:
-          errorMessage = 'Bad Request: Please check your input data';
+          errorMessage = "Bad Request: Please check your input data";
           break;
         case 401:
-          errorMessage = 'Unauthorized: Please log in again';
+          errorMessage = "Unauthorized: Please log in again";
           break;
         case 403:
           errorMessage =
-            'Forbidden: You do not have permission to perform this action';
+            "Forbidden: You do not have permission to perform this action";
           break;
         case 404:
-          errorMessage = 'Not Found: The requested resource was not found';
+          errorMessage = "Not Found: The requested resource was not found";
           break;
         case 409:
-          errorMessage = 'Conflict: The resource already exists';
+          errorMessage = "Conflict: The resource already exists";
           break;
         case 422:
-          errorMessage = 'Validation Error: Please check your input data';
+          errorMessage = "Validation Error: Please check your input data";
           break;
         case 500:
-          errorMessage = 'Internal Server Error: Please try again later';
+          errorMessage = "Internal Server Error: Please try again later";
           break;
         default:
           errorMessage = `Error ${error.status}: ${error.message}`;
       }
     }
 
-    console.error('FreelancerProfileService Error:', errorMessage, error);
+    console.error("FreelancerProfileService Error:", errorMessage, error);
     return throwError(() => new Error(errorMessage));
   }
 }
