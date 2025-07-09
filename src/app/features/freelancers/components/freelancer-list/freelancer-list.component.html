@@ -1,0 +1,139 @@
+<div class="freelancer-list">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="loading-spinner"></div>
+    <p>Loading freelancers...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && freelancers.length === 0" class="empty-state">
+    <div class="empty-icon">👥</div>
+    <h3>No freelancers found</h3>
+    <p>Try adjusting your search criteria or filters</p>
+  </div>
+
+  <!-- Freelancer Grid -->
+  <div *ngIf="!isLoading && freelancers.length > 0" class="freelancers-grid">
+    <div
+      *ngFor="let freelancer of freelancers"
+      class="freelancer-card"
+      (click)="onFreelancerClick(freelancer)"
+    >
+      <!-- Card Header with Profile Image -->
+      <div class="card-header">
+        <div class="profile-image-container">
+          <img
+            [src]="getProfileImageSrc(freelancer)"
+            [alt]="freelancer.firstName + ' ' + freelancer.lastName"
+            class="profile-image"
+          />
+          <div
+            class="online-status"
+            [class.online]="freelancer.isOnline"
+            [title]="freelancer.isOnline ? 'Online' : 'Offline'"
+          ></div>
+          <div
+            *ngIf="freelancer.isVerified"
+            class="verified-badge"
+            title="Verified Freelancer"
+          >
+            ✓
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Content -->
+      <div class="card-content">
+        <!-- Name and Title -->
+        <div class="freelancer-info">
+          <h3 class="freelancer-name">
+            {{ freelancer.firstName }} {{ freelancer.lastName }}
+          </h3>
+          <p class="freelancer-title">{{ freelancer.title }}</p>
+        </div>
+
+        <!-- Location -->
+        <div class="location">
+          <span class="location-icon">📍</span>
+          {{ freelancer.location }}
+        </div>
+
+        <!-- Rating and Reviews -->
+        <div class="rating-section">
+          <div class="stars">
+            <span
+              *ngFor="let star of getStarArray(freelancer.rating)"
+              class="star"
+              [class.filled]="star"
+            >
+              ★
+            </span>
+          </div>
+          <span class="rating-text">
+            {{ freelancer.rating }}/5 ({{ freelancer.reviewsCount }} reviews)
+          </span>
+        </div>
+
+        <!-- Skills -->
+        <div class="skills-section">
+          <div class="skills-list">
+            <span
+              *ngFor="let skill of freelancer.skills.slice(0, 3)"
+              class="skill-tag"
+            >
+              {{ skill.name }}
+            </span>
+            <span *ngIf="freelancer.skills.length > 3" class="more-skills">
+              +{{ freelancer.skills.length - 3 }} more
+            </span>
+          </div>
+        </div>
+
+        <!-- Experience and Projects -->
+        <div class="stats-section">
+          <div class="stat-item">
+            <span class="stat-label">Experience:</span>
+            <span class="stat-value"
+              >{{ freelancer.experienceYears }} years</span
+            >
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Projects:</span>
+            <span class="stat-value">{{ freelancer.completedProjects }}</span>
+          </div>
+        </div>
+
+        <!-- Hourly Rate -->
+        <div class="rate-section">
+          <span class="rate-label">Starting at</span>
+          <span class="hourly-rate">
+            {{ freelancer.currency }} {{ freelancer.hourlyRate }}/hr
+          </span>
+        </div>
+
+        <!-- Availability -->
+        <div class="availability-section">
+          <span
+            class="availability-badge"
+            [class]="getAvailabilityClass(freelancer.availability)"
+          >
+            {{ freelancer.availability }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Card Footer -->
+      <div class="card-footer">
+        <button class="btn btn-outline" (click)="onFreelancerClick(freelancer)">
+          View Profile
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="onContactClick($event, freelancer)"
+        >
+          Contact
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

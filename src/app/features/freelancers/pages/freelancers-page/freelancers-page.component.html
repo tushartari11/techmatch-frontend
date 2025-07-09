@@ -1,0 +1,139 @@
+<div class="freelancers-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Find Freelancers</h1>
+      <p class="page-subtitle">
+        Discover talented professionals for your projects
+      </p>
+    </div>
+  </div>
+
+  <!-- Search and Filters Section -->
+  <div class="search-filters-section">
+    <form [formGroup]="searchForm" class="search-form">
+      <!-- Main Search Bar -->
+      <div class="search-bar">
+        <div class="search-input-group">
+          <input
+            type="text"
+            formControlName="search"
+            placeholder="Search freelancers by name, title, or skills..."
+            class="search-input"
+          />
+          <button type="button" class="search-btn">
+            <span class="search-icon">🔍</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Options -->
+      <div class="filters-row">
+        <!-- Skills Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Skills</label>
+          <select formControlName="skills" class="filter-select" multiple>
+            <option value="">All Skills</option>
+            <option *ngFor="let category of skillCategories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Location Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Location</label>
+          <input
+            type="text"
+            formControlName="location"
+            placeholder="Enter location"
+            class="filter-input"
+          />
+        </div>
+
+        <!-- Hourly Rate Range -->
+        <div class="filter-group">
+          <label class="filter-label">Hourly Rate (USD)</label>
+          <div class="rate-range">
+            <input
+              type="number"
+              formControlName="hourlyRateMin"
+              placeholder="Min"
+              class="filter-input rate-input"
+            />
+            <span class="rate-separator">-</span>
+            <input
+              type="number"
+              formControlName="hourlyRateMax"
+              placeholder="Max"
+              class="filter-input rate-input"
+            />
+          </div>
+        </div>
+
+        <!-- Experience Level -->
+        <div class="filter-group">
+          <label class="filter-label">Experience</label>
+          <select formControlName="experienceLevel" class="filter-select">
+            <option value="">All Levels</option>
+            <option *ngFor="let level of experienceLevels" [value]="level">
+              {{ level }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Availability -->
+        <div class="filter-group">
+          <label class="filter-label">Availability</label>
+          <select formControlName="availability" class="filter-select">
+            <option value="">All</option>
+            <option *ngFor="let option of availabilityOptions" [value]="option">
+              {{ option }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Verified Filter -->
+        <div class="filter-group checkbox-group">
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              formControlName="isVerified"
+              class="filter-checkbox"
+            />
+            <span class="checkbox-text">Verified only</span>
+          </label>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="filter-group">
+          <button
+            type="button"
+            class="btn btn-outline reset-btn"
+            (click)="onResetFilters()"
+          >
+            Reset Filters
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Results Summary -->
+  <div class="results-summary" *ngIf="!isLoading">
+    <p class="results-count">
+      {{ totalFreelancers }} freelancer{{ totalFreelancers !== 1 ? "s" : "" }}
+      found
+    </p>
+  </div>
+
+  <!-- Freelancer List Component -->
+  <div class="freelancer-list-container">
+    <app-freelancer-list
+      [freelancers]="filteredFreelancers"
+      [isLoading]="isLoading"
+      (freelancerClick)="onFreelancerClick($event)"
+      (contactClick)="onContactFreelancer($event)"
+    ></app-freelancer-list>
+  </div>
+</div>

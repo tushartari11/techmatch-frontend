@@ -1,0 +1,428 @@
+[
+  {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "+1234567890",
+    "title": "Full Stack Developer",
+    "profileImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    "location": "San Francisco, CA",
+    "hourlyRate": 85,
+    "currency": "USD",
+    "availability": "Available",
+    "skills": ["JavaScript", "React", "Node.js", "Python", "MongoDB", "PostgreSQL", "AWS", "Docker"],
+    "specializations": ["Web Development", "API Development", "Cloud Architecture", "Microservices"],
+    "experienceYears": 6,
+    "languages": ["English", "Spanish"],
+    "bio": "Experienced full stack developer with expertise in modern web technologies and scalable applications. Passionate about creating efficient, maintainable code and delivering exceptional user experiences.",
+    "portfolio": [
+      {
+        "id": 1,
+        "title": "E-commerce Platform",
+        "description": "Built a complete e-commerce solution with React frontend and Node.js backend, featuring payment integration, inventory management, and admin dashboard.",
+        "imageUrl": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+        "projectUrl": "https://demo-ecommerce.johndev.com",
+        "technologies": ["React", "Node.js", "MongoDB", "Stripe", "AWS"]
+      },
+      {
+        "id": 2,
+        "title": "Real Estate Management System",
+        "description": "Developed a comprehensive property management system with advanced search, virtual tours, and CRM integration.",
+        "imageUrl": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
+        "projectUrl": "https://realestate-demo.johndev.com",
+        "technologies": ["React", "Express", "PostgreSQL", "Redis", "Docker"]
+      }
+    ],
+    "education": [
+      {
+        "id": 1,
+        "degree": "Bachelor of Computer Science",
+        "institution": "Stanford University",
+        "year": 2018
+      },
+      {
+        "id": 2,
+        "degree": "Master of Software Engineering",
+        "institution": "UC Berkeley",
+        "year": 2020
+      }
+    ],
+    "certifications": [
+      {
+        "id": 1,
+        "name": "AWS Certified Solutions Architect",
+        "issuer": "Amazon Web Services",
+        "date": "2023-06-15T00:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "name": "Google Cloud Professional Developer",
+        "issuer": "Google Cloud",
+        "date": "2023-08-20T00:00:00.000Z"
+      }
+    ],
+    "rating": 4.9,
+    "reviewsCount": 127,
+    "completedProjects": 89,
+    "description": "Expert full stack developer specializing in modern web technologies and cloud solutions. Available for both short-term and long-term projects with a focus on scalable, maintainable code.",
+    "isVerified": true,
+    "isOnline": true,
+    "joinedDate": "2020-01-15T00:00:00.000Z",
+    "lastActive": "2024-01-18T14:30:00.000Z",
+    "profileViews": 1250,
+    "responseTime": "< 1 hour",
+    "successRate": 98
+  },
+  {
+    "id": 2,
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "email": "sarah.johnson@example.com",
+    "phone": "+1234567891",
+    "title": "UI/UX Designer",
+    "profileImage": "https://images.unsplash.com/photo-1494790108755-2616b5b723a1?w=400&h=400&fit=crop&crop=face",
+    "location": "New York, NY",
+    "hourlyRate": 75,
+    "currency": "USD",
+    "availability": "Available",
+    "skills": ["Figma", "Adobe XD", "Sketch", "Prototyping", "User Research", "Wireframing", "Adobe Creative Suite"],
+    "specializations": ["UI Design", "UX Research", "Mobile Design", "Design Systems", "Branding"],
+    "experienceYears": 4,
+    "languages": ["English", "French"],
+    "bio": "Creative UI/UX designer passionate about creating intuitive user experiences and beautiful interfaces. Specialized in user-centered design with a strong focus on accessibility and conversion optimization.",
+    "portfolio": [
+      {
+        "id": 3,
+        "title": "Banking Mobile App",
+        "description": "Designed a complete mobile banking application with focus on security, usability, and modern interface design.",
+        "imageUrl": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
+        "projectUrl": "https://dribbble.com/shots/banking-app",
+        "technologies": ["Figma", "Principle", "InVision", "Sketch"]
+      },
+      {
+        "id": 4,
+        "title": "SaaS Dashboard Design",
+        "description": "Created a comprehensive dashboard design for a project management SaaS platform with complex data visualization.",
+        "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+        "projectUrl": "https://behance.net/saas-dashboard",
+        "technologies": ["Figma", "Adobe XD", "Photoshop", "Illustrator"]
+      }
+    ],
+    "education": [
+      {
+        "id": 3,
+        "degree": "Bachelor of Fine Arts in Graphic Design",
+        "institution": "Parsons School of Design",
+        "year": 2020
+      }
+    ],
+    "certifications": [
+      {
+        "id": 3,
+        "name": "Google UX Design Certificate",
+        "issuer": "Google",
+        "date": "2023-03-10T00:00:00.000Z"
+      },
+      {
+        "id": 4,
+        "name": "Adobe Certified Expert",
+        "issuer": "Adobe",
+        "date": "2022-11-15T00:00:00.000Z"
+      }
+    ],
+    "rating": 4.8,
+    "reviewsCount": 98,
+    "completedProjects": 64,
+    "description": "Experienced UI/UX designer focused on creating user-centered designs that drive engagement and conversion. Expertise in mobile and web design with strong research background.",
+    "isVerified": true,
+    "isOnline": false,
+    "joinedDate": "2021-03-10T00:00:00.000Z",
+    "lastActive": "2024-01-18T10:15:00.000Z",
+    "profileViews": 890,
+    "responseTime": "< 2 hours",
+    "successRate": 96
+  },
+  {
+    "id": 3,
+    "firstName": "Mike",
+    "lastName": "Chen",
+    "email": "mike.chen@example.com",
+    "phone": "+1234567892",
+    "title": "Mobile App Developer",
+    "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    "location": "Austin, TX",
+    "hourlyRate": 90,
+    "currency": "USD",
+    "availability": "Busy",
+    "skills": ["React Native", "Flutter", "iOS", "Android", "Swift", "Kotlin", "Firebase", "SQLite"],
+    "specializations": ["Mobile Development", "Cross-platform Apps", "Native iOS", "Native Android", "App Store Optimization"],
+    "experienceYears": 5,
+    "languages": ["English", "Mandarin", "Japanese"],
+    "bio": "Mobile development specialist with focus on cross-platform solutions and native performance. Expert in creating high-quality mobile applications with excellent user experience and optimal performance.",
+    "portfolio": [
+      {
+        "id": 5,
+        "title": "Fitness Tracking App",
+        "description": "Developed a comprehensive fitness tracking application with workout plans, nutrition tracking, and social features.",
+        "imageUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        "projectUrl": "https://apps.apple.com/fitness-tracker",
+        "technologies": ["React Native", "Firebase", "Redux", "AsyncStorage"]
+      },
+      {
+        "id": 6,
+        "title": "Food Delivery App",
+        "description": "Built a complete food delivery platform with real-time tracking, payment integration, and driver management.",
+        "imageUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop",
+        "projectUrl": "https://play.google.com/food-delivery",
+        "technologies": ["Flutter", "Dart", "Google Maps", "Stripe", "WebSockets"]
+      }
+    ],
+    "education": [
+      {
+        "id": 4,
+        "degree": "Bachelor of Computer Engineering",
+        "institution": "University of Texas at Austin",
+        "year": 2019
+      }
+    ],
+    "certifications": [
+      {
+        "id": 5,
+        "name": "iOS App Development with Swift",
+        "issuer": "Apple",
+        "date": "2022-09-20T00:00:00.000Z"
+      },
+      {
+        "id": 6,
+        "name": "Android Associate Developer",
+        "issuer": "Google",
+        "date": "2023-01-25T00:00:00.000Z"
+      }
+    ],
+    "rating": 4.7,
+    "reviewsCount": 76,
+    "completedProjects": 52,
+    "description": "Expert mobile developer creating high-performance apps for iOS and Android platforms with focus on user experience and scalability.",
+    "isVerified": true,
+    "isOnline": true,
+    "joinedDate": "2019-08-20T00:00:00.000Z",
+    "lastActive": "2024-01-18T16:45:00.000Z",
+    "profileViews": 1100,
+    "responseTime": "< 3 hours",
+    "successRate": 94
+  },
+  {
+    "id": 4,
+    "firstName": "Emily",
+    "lastName": "Rodriguez",
+    "email": "emily.rodriguez@example.com",
+    "phone": "+1234567893",
+    "title": "Data Scientist",
+    "profileImage": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
+    "location": "Seattle, WA",
+    "hourlyRate": 95,
+    "currency": "USD",
+    "availability": "Available",
+    "skills": ["Python", "R", "Machine Learning", "TensorFlow", "PyTorch", "Pandas", "NumPy", "SQL", "Tableau"],
+    "specializations": ["Machine Learning", "Data Analysis", "Predictive Modeling", "Big Data", "Statistical Analysis"],
+    "experienceYears": 7,
+    "languages": ["English", "Spanish", "Portuguese"],
+    "bio": "Experienced data scientist specializing in machine learning and predictive analytics with proven track record in transforming complex data into actionable business insights.",
+    "portfolio": [
+      {
+        "id": 7,
+        "title": "Customer Churn Prediction Model",
+        "description": "Developed a machine learning model to predict customer churn with 94% accuracy, helping reduce customer attrition by 23%.",
+        "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+        "projectUrl": "https://github.com/emily/churn-prediction",
+        "technologies": ["Python", "Scikit-learn", "Pandas", "Matplotlib", "Jupyter"]
+      },
+      {
+        "id": 8,
+        "title": "Sales Forecasting Dashboard",
+        "description": "Created an interactive dashboard for sales forecasting using time series analysis and regression models.",
+        "imageUrl": "https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&h=400&fit=crop",
+        "projectUrl": "https://tableau.com/sales-dashboard",
+        "technologies": ["Python", "Tableau", "SQL", "Time Series Analysis"]
+      }
+    ],
+    "education": [
+      {
+        "id": 5,
+        "degree": "PhD in Statistics",
+        "institution": "University of Washington",
+        "year": 2019
+      },
+      {
+        "id": 6,
+        "degree": "Master of Data Science",
+        "institution": "Carnegie Mellon University",
+        "year": 2016
+      }
+    ],
+    "certifications": [
+      {
+        "id": 7,
+        "name": "TensorFlow Developer Certificate",
+        "issuer": "Google",
+        "date": "2023-04-12T00:00:00.000Z"
+      },
+      {
+        "id": 8,
+        "name": "AWS Machine Learning Specialty",
+        "issuer": "Amazon Web Services",
+        "date": "2023-07-08T00:00:00.000Z"
+      }
+    ],
+    "rating": 4.9,
+    "reviewsCount": 145,
+    "completedProjects": 73,
+    "description": "PhD-level data scientist with expertise in machine learning, statistical analysis, and big data processing. Specialized in predictive modeling and business intelligence.",
+    "isVerified": true,
+    "isOnline": false,
+    "joinedDate": "2018-05-12T00:00:00.000Z",
+    "lastActive": "2024-01-18T08:20:00.000Z",
+    "profileViews": 1580,
+    "responseTime": "< 4 hours",
+    "successRate": 97
+  },
+  {
+    "id": 5,
+    "firstName": "David",
+    "lastName": "Kim",
+    "email": "david.kim@example.com",
+    "phone": "+1234567894",
+    "title": "DevOps Engineer",
+    "profileImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    "location": "Denver, CO",
+    "hourlyRate": 80,
+    "currency": "USD",
+    "availability": "Available",
+    "skills": ["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins", "Python", "Bash", "Git", "Ansible"],
+    "specializations": ["Cloud Infrastructure", "CI/CD", "Container Orchestration", "Infrastructure as Code", "Monitoring"],
+    "experienceYears": 8,
+    "languages": ["English", "Korean"],
+    "bio": "Senior DevOps engineer with extensive experience in cloud infrastructure and automation solutions. Expert in building scalable, secure, and efficient deployment pipelines.",
+    "portfolio": [
+      {
+        "id": 9,
+        "title": "Multi-Cloud Infrastructure",
+        "description": "Designed and implemented a multi-cloud infrastructure solution with automated deployment and monitoring across AWS, Azure, and GCP.",
+        "imageUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop",
+        "projectUrl": "https://github.com/davidkim/multi-cloud-infra",
+        "technologies": ["Terraform", "AWS", "Azure", "Kubernetes", "Helm"]
+      },
+      {
+        "id": 10,
+        "title": "CI/CD Pipeline Automation",
+        "description": "Built a comprehensive CI/CD pipeline with automated testing, security scanning, and deployment for microservices architecture.",
+        "imageUrl": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop",
+        "projectUrl": "https://github.com/davidkim/cicd-pipeline",
+        "technologies": ["Jenkins", "Docker", "Kubernetes", "SonarQube", "Prometheus"]
+      }
+    ],
+    "education": [
+      {
+        "id": 7,
+        "degree": "Bachelor of Computer Science",
+        "institution": "University of Colorado Boulder",
+        "year": 2016
+      }
+    ],
+    "certifications": [
+      {
+        "id": 9,
+        "name": "AWS DevOps Engineer Professional",
+        "issuer": "Amazon Web Services",
+        "date": "2023-02-18T00:00:00.000Z"
+      },
+      {
+        "id": 10,
+        "name": "Certified Kubernetes Administrator",
+        "issuer": "Cloud Native Computing Foundation",
+        "date": "2023-05-30T00:00:00.000Z"
+      }
+    ],
+    "rating": 4.6,
+    "reviewsCount": 68,
+    "completedProjects": 45,
+    "description": "Expert DevOps engineer specializing in cloud infrastructure, automation, and scalable deployment solutions. Proven track record in reducing deployment times and improving system reliability.",
+    "isVerified": true,
+    "isOnline": true,
+    "joinedDate": "2019-02-28T00:00:00.000Z",
+    "lastActive": "2024-01-18T15:10:00.000Z",
+    "profileViews": 920,
+    "responseTime": "< 6 hours",
+    "successRate": 92
+  },
+  {
+    "id": 6,
+    "firstName": "Lisa",
+    "lastName": "Thompson",
+    "email": "lisa.thompson@example.com",
+    "phone": "+1234567895",
+    "title": "Digital Marketing Specialist",
+    "profileImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+    "location": "Miami, FL",
+    "hourlyRate": 65,
+    "currency": "USD",
+    "availability": "Available",
+    "skills": ["Google Ads", "Facebook Marketing", "SEO", "Content Marketing", "Email Marketing", "Analytics", "Social Media"],
+    "specializations": ["PPC Advertising", "Social Media Marketing", "SEO Optimization", "Content Strategy", "Marketing Analytics"],
+    "experienceYears": 5,
+    "languages": ["English", "Spanish"],
+    "bio": "Results-driven digital marketing specialist with expertise in multi-channel campaigns and performance optimization. Focused on driving measurable ROI and business growth through strategic marketing initiatives.",
+    "portfolio": [
+      {
+        "id": 11,
+        "title": "E-commerce PPC Campaign",
+        "description": "Managed a comprehensive PPC campaign that increased online sales by 340% and reduced cost per acquisition by 45%.",
+        "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+        "projectUrl": "https://case-study.marketing-results.com",
+        "technologies": ["Google Ads", "Facebook Ads", "Google Analytics", "Conversion Tracking"]
+      },
+      {
+        "id": 12,
+        "title": "Content Marketing Strategy",
+        "description": "Developed and executed a content marketing strategy that increased organic traffic by 280% and generated 150+ qualified leads monthly.",
+        "imageUrl": "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&h=400&fit=crop",
+        "projectUrl": "https://content-strategy-case.com",
+        "technologies": ["SEO", "Content Creation", "WordPress", "HubSpot", "Mailchimp"]
+      }
+    ],
+    "education": [
+      {
+        "id": 8,
+        "degree": "Bachelor of Marketing",
+        "institution": "University of Miami",
+        "year": 2019
+      }
+    ],
+    "certifications": [
+      {
+        "id": 11,
+        "name": "Google Ads Certified",
+        "issuer": "Google",
+        "date": "2023-01-15T00:00:00.000Z"
+      },
+      {
+        "id": 12,
+        "name": "Facebook Blueprint Certification",
+        "issuer": "Meta",
+        "date": "2023-03-22T00:00:00.000Z"
+      }
+    ],
+    "rating": 4.8,
+    "reviewsCount": 112,
+    "completedProjects": 78,
+    "description": "Expert digital marketer specializing in performance marketing, PPC advertising, and growth strategies. Proven track record of delivering exceptional ROI and business growth.",
+    "isVerified": true,
+    "isOnline": true,
+    "joinedDate": "2020-09-14T00:00:00.000Z",
+    "lastActive": "2024-01-18T13:25:00.000Z",
+    "profileViews": 1320,
+    "responseTime": "< 2 hours",
+    "successRate": 95
+  }
+]

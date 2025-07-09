@@ -1,0 +1,70 @@
+<header class="header">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <a routerLink="/" class="brand-logo">
+          <span class="brand-text">TechMatch</span>
+        </a>
+      </div>
+
+      <div class="nav-menu" [class.nav-menu-open]="isMobileMenuOpen">
+        <ul class="nav-links">
+          <li>
+            <a
+              routerLink="/dashboard"
+              class="nav-link"
+              routerLinkActive="active"
+              (click)="closeMobileMenu()"
+              >Dashboard</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/projects"
+              class="nav-link"
+              routerLinkActive="active"
+              (click)="closeMobileMenu()"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/freelancers"
+              class="nav-link"
+              routerLinkActive="active"
+              (click)="closeMobileMenu()"
+              >Freelancers</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/create-profile"
+              class="nav-link"
+              routerLinkActive="active"
+              (click)="closeMobileMenu()"
+              >Create Profile</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav-actions">
+        <div class="auth-buttons">
+          <button class="btn btn-outline">Sign In</button>
+          <button class="btn btn-primary">Sign Up</button>
+        </div>
+      </div>
+
+      <button
+        class="mobile-menu-toggle"
+        (click)="toggleMobileMenu()"
+        [class.active]="isMobileMenuOpen"
+        aria-label="Toggle mobile menu"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+</header>

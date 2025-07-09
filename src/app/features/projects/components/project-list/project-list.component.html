@@ -1,0 +1,94 @@
+<div class="project-list">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="loading-spinner"></div>
+    <p>Loading projects...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && projects.length === 0" class="empty-state">
+    <div class="empty-icon">📋</div>
+    <h3>No projects found</h3>
+    <p>Try adjusting your search criteria or filters</p>
+  </div>
+
+  <!-- Project Cards -->
+  <div *ngIf="!isLoading && projects.length > 0" class="projects-grid">
+    <div
+      *ngFor="let project of projects"
+      class="project-card"
+      (click)="onProjectClick(project)"
+    >
+      <div class="project-header">
+        <div class="project-title-section">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <div class="project-meta">
+            <span class="project-type">{{ project.projectType }}</span>
+            <span class="project-posted">{{
+              getTimeAgo(project.postedDate)
+            }}</span>
+            <span *ngIf="project.isUrgent" class="urgent-badge">Urgent</span>
+          </div>
+        </div>
+        <div class="project-budget">
+          <span class="budget-amount">{{
+            getBudgetDisplay(project.budget)
+          }}</span>
+        </div>
+      </div>
+
+      <div class="project-content">
+        <p class="project-description">{{ project.description }}</p>
+
+        <div class="project-details">
+          <div class="detail-item">
+            <span class="detail-label">Client:</span>
+            <span class="detail-value">{{ project.client }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Location:</span>
+            <span class="detail-value">
+              {{ project.location }}
+              <span *ngIf="project.isRemote" class="remote-badge">Remote</span>
+            </span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Duration:</span>
+            <span class="detail-value">{{ project.duration }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Experience:</span>
+            <span class="detail-value">{{ project.experienceLevel }}</span>
+          </div>
+        </div>
+
+        <div class="project-skills">
+          <span class="skills-label">Required Skills:</span>
+          <div class="skills-list">
+            <span
+              *ngFor="let skill of project.requiredSkills"
+              class="skill-tag"
+            >
+              {{ skill }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-footer">
+        <div class="project-stats">
+          <span class="applications-count">
+            {{ project.applicationsCount }} applications
+          </span>
+          <span
+            class="project-status"
+            [class]="'status-' + project.status.toLowerCase().replace(' ', '-')"
+          >
+            {{ project.status }}
+          </span>
+        </div>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+    </div>
+  </div>
+</div>

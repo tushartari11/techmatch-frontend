@@ -1,0 +1,161 @@
+<div class="projects-page">
+  <!-- Header Section -->
+  <div class="projects-header">
+    <div class="header-content">
+      <h1>Find the right project</h1>
+      <p>Discover amazing projects that match your skills and interests</p>
+    </div>
+  </div>
+
+  <!-- Search and Filters Section -->
+  <div class="search-filters-section">
+    <div class="container">
+      <form [formGroup]="searchForm" class="search-form">
+        <!-- Main Search Bar -->
+        <div class="main-search">
+          <input
+            type="text"
+            formControlName="search"
+            placeholder="Search projects..."
+            class="search-input"
+          />
+          <button type="button" class="search-btn">
+            <i class="search-icon">🔍</i>
+          </button>
+        </div>
+
+        <!-- Filters Row -->
+        <div class="filters-row">
+          <div class="filter-group">
+            <label>Category</label>
+            <select formControlName="category" class="filter-select">
+              <option value="">All Categories</option>
+              <option *ngFor="let category of categories" [value]="category">
+                {{ category }}
+              </option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Location</label>
+            <input
+              type="text"
+              formControlName="location"
+              placeholder="Any location"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-group">
+            <label>Experience</label>
+            <select formControlName="experienceLevel" class="filter-select">
+              <option value="">All Levels</option>
+              <option *ngFor="let level of experienceLevels" [value]="level">
+                {{ level }}
+              </option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Project Type</label>
+            <select formControlName="projectType" class="filter-select">
+              <option value="">All Types</option>
+              <option *ngFor="let type of projectTypes" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Budget Min</label>
+            <input
+              type="number"
+              formControlName="budgetMin"
+              placeholder="Min budget"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-group">
+            <label>Budget Max</label>
+            <input
+              type="number"
+              formControlName="budgetMax"
+              placeholder="Max budget"
+              class="filter-input"
+            />
+          </div>
+
+          <div class="filter-group checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                formControlName="isRemote"
+                class="filter-checkbox"
+              />
+              Remote Only
+            </label>
+          </div>
+
+          <div class="filter-group checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                formControlName="isUrgent"
+                class="filter-checkbox"
+              />
+              Urgent Projects
+            </label>
+          </div>
+
+          <button type="button" (click)="onResetFilters()" class="reset-btn">
+            Reset Filters
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="results-section">
+    <div class="container">
+      <div class="results-header">
+        <h2>{{ totalProjects }} projects for freelancers</h2>
+        <div class="results-info">
+          <span>Showing {{ filteredProjects.length }} results</span>
+        </div>
+      </div>
+
+      <!-- Project List Component -->
+      <app-project-list
+        [projects]="filteredProjects"
+        [isLoading]="isLoading"
+        (projectClick)="onProjectClick($event)"
+      >
+      </app-project-list>
+
+      <!-- Pagination -->
+      <div class="pagination" *ngIf="totalPages > 1">
+        <button
+          [disabled]="currentPage === 1"
+          (click)="currentPage = currentPage - 1"
+          class="pagination-btn"
+        >
+          Previous
+        </button>
+
+        <span class="pagination-info">
+          Page {{ currentPage }} of {{ totalPages }}
+        </span>
+
+        <button
+          [disabled]="currentPage === totalPages"
+          (click)="currentPage = currentPage + 1"
+          class="pagination-btn"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

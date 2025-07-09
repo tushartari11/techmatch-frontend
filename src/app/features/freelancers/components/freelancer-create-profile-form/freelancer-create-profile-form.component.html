@@ -1,0 +1,618 @@
+<div class="create-profile-container">
+  <div class="profile-form-wrapper">
+    <!-- Header -->
+    <div class="form-header">
+      <h1 class="form-title">Create Your Freelancer Profile</h1>
+      <p class="form-subtitle">Build a compelling profile to attract clients</p>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+      <div class="steps">
+        <div
+          *ngFor="let step of [1, 2, 3, 4, 5, 6]; let i = index"
+          class="step"
+          [class.active]="currentStep === step"
+          [class.completed]="currentStep > step"
+          (click)="goToStep(step)"
+        >
+          <div class="step-number">{{ step }}</div>
+          <div class="step-label">
+            {{ getStepLabel(step) }}
+          </div>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div
+          class="progress-fill"
+          [style.width.%]="(currentStep / totalSteps) * 100"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Form Content -->
+    <form
+      [formGroup]="profileForm"
+      (ngSubmit)="onSubmit()"
+      class="profile-form"
+    >
+      <!-- Step 1: Basic Information -->
+      <div class="form-step" *ngIf="currentStep === 1">
+        <h2 class="step-title">Basic Information</h2>
+
+        <!-- Profile Image Upload -->
+        <div class="form-group profile-image-section">
+          <label class="form-label">Profile Picture</label>
+          <div class="image-upload-container">
+            <div class="image-preview">
+              <img
+                *ngIf="profileImagePreview"
+                [src]="profileImagePreview"
+                alt="Profile Preview"
+                class="preview-image"
+              />
+              <div *ngIf="!profileImagePreview" class="placeholder-image">
+                <span class="placeholder-icon">📷</span>
+                <span class="placeholder-text">Upload Photo</span>
+              </div>
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              (change)="onFileSelected($event)"
+              class="file-input"
+              id="profileImage"
+            />
+            <label for="profileImage" class="upload-btn">Choose Photo</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name *</label>
+            <input
+              type="text"
+              formControlName="firstName"
+              class="form-input"
+              [class.error]="isFieldInvalid('firstName')"
+              placeholder="Enter your first name"
+            />
+            <div class="error-message" *ngIf="isFieldInvalid('firstName')">
+              {{ getFieldError("firstName") }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Last Name *</label>
+            <input
+              type="text"
+              formControlName="lastName"
+              class="form-input"
+              [class.error]="isFieldInvalid('lastName')"
+              placeholder="Enter your last name"
+            />
+            <div class="error-message" *ngIf="isFieldInvalid('lastName')">
+              {{ getFieldError("lastName") }}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input
+              type="email"
+              formControlName="email"
+              class="form-input"
+              [class.error]="isFieldInvalid('email')"
+              placeholder="your.email@example.com"
+            />
+            <div class="error-message" *ngIf="isFieldInvalid('email')">
+              {{ getFieldError("email") }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input
+              type="tel"
+              formControlName="phone"
+              class="form-input"
+              [class.error]="isFieldInvalid('phone')"
+              placeholder="+1 (555) 123-4567"
+            />
+            <div class="error-message" *ngIf="isFieldInvalid('phone')">
+              {{ getFieldError("phone") }}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Professional Title *</label>
+          <input
+            type="text"
+            formControlName="title"
+            class="form-input"
+            [class.error]="isFieldInvalid('title')"
+            placeholder="e.g., Full Stack Developer, UI/UX Designer"
+          />
+          <div class="error-message" *ngIf="isFieldInvalid('title')">
+            {{ getFieldError("title") }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Location *</label>
+          <input
+            type="text"
+            formControlName="location"
+            class="form-input"
+            [class.error]="isFieldInvalid('location')"
+            placeholder="City, State/Country"
+          />
+          <div class="error-message" *ngIf="isFieldInvalid('location')">
+            {{ getFieldError("location") }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Professional Details -->
+      <div class="form-step" *ngIf="currentStep === 2">
+        <h2 class="step-title">Professional Details</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Hourly Rate *</label>
+            <div class="input-group">
+              <select formControlName="currency" class="currency-select">
+                <option
+                  *ngFor="let currency of currencyOptions"
+                  [value]="currency"
+                >
+                  {{ currency }}
+                </option>
+              </select>
+              <input
+                type="number"
+                formControlName="hourlyRate"
+                class="form-input rate-input"
+                [class.error]="isFieldInvalid('hourlyRate')"
+                placeholder="0"
+                min="5"
+              />
+              <span class="input-suffix">/hour</span>
+            </div>
+            <div class="error-message" *ngIf="isFieldInvalid('hourlyRate')">
+              {{ getFieldError("hourlyRate") }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Availability *</label>
+            <select
+              formControlName="availability"
+              class="form-select"
+              [class.error]="isFieldInvalid('availability')"
+            >
+              <option
+                *ngFor="let option of availabilityOptions"
+                [value]="option"
+              >
+                {{ option }}
+              </option>
+            </select>
+            <div class="error-message" *ngIf="isFieldInvalid('availability')">
+              {{ getFieldError("availability") }}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Years of Experience *</label>
+          <select
+            formControlName="experienceYears"
+            class="form-select"
+            [class.error]="isFieldInvalid('experienceYears')"
+          >
+            <option value="">Select experience level</option>
+            <option *ngFor="let exp of experienceOptions" [value]="exp.value">
+              {{ exp.label }}
+            </option>
+          </select>
+          <div class="error-message" *ngIf="isFieldInvalid('experienceYears')">
+            {{ getFieldError("experienceYears") }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Skills and Specializations -->
+      <div class="form-step" *ngIf="currentStep === 3">
+        <h2 class="step-title">Skills & Expertise</h2>
+
+        <!-- Skills Section -->
+        <div class="form-group">
+          <label class="form-label">Skills *</label>
+          <div class="skills-input-container">
+            <div class="skill-categories">
+              <button
+                *ngFor="let category of skillCategories"
+                type="button"
+                class="category-btn"
+                (click)="addSkill(category)"
+              >
+                {{ category }}
+              </button>
+            </div>
+            <div class="selected-skills">
+              <div
+                *ngFor="let skill of skillsArray.controls; let i = index"
+                class="skill-tag"
+              >
+                {{ skill.value }}
+                <button
+                  type="button"
+                  class="remove-btn"
+                  (click)="removeSkill(i)"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specializations Section -->
+        <div class="form-group">
+          <label class="form-label">Specializations</label>
+          <div class="specializations-container">
+            <input
+              type="text"
+              placeholder="Enter a specialization and press Enter"
+              class="form-input"
+              (keyup.enter)="
+                addSpecialization($any($event.target).value);
+                $any($event.target).value = ''
+              "
+            />
+            <div class="selected-specializations">
+              <div
+                *ngFor="
+                  let spec of specializationsArray.controls;
+                  let i = index
+                "
+                class="specialization-tag"
+              >
+                {{ spec.value }}
+                <button
+                  type="button"
+                  class="remove-btn"
+                  (click)="removeSpecialization(i)"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Languages Section -->
+        <div class="form-group">
+          <label class="form-label">Languages *</label>
+          <div class="languages-container">
+            <select
+              class="form-select"
+              (change)="
+                addLanguage($any($event.target).value);
+                $any($event.target).value = ''
+              "
+            >
+              <option value="">Select a language</option>
+              <option *ngFor="let lang of languageOptions" [value]="lang">
+                {{ lang }}
+              </option>
+            </select>
+            <div class="selected-languages">
+              <div
+                *ngFor="let lang of languagesArray.controls; let i = index"
+                class="language-tag"
+              >
+                {{ lang.value }}
+                <button
+                  type="button"
+                  class="remove-btn"
+                  (click)="removeLanguage(i)"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Bio and Description -->
+      <div class="form-step" *ngIf="currentStep === 4">
+        <h2 class="step-title">About You</h2>
+
+        <div class="form-group">
+          <label class="form-label">Professional Bio *</label>
+          <textarea
+            formControlName="bio"
+            class="form-textarea"
+            [class.error]="isFieldInvalid('bio')"
+            placeholder="Write a compelling bio that showcases your experience, skills, and what makes you unique as a freelancer. Minimum 50 characters."
+            rows="6"
+          ></textarea>
+          <div class="char-counter">
+            {{ profileForm.get("bio")?.value?.length || 0 }}/500 characters
+          </div>
+          <div class="error-message" *ngIf="isFieldInvalid('bio')">
+            {{ getFieldError("bio") }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: Portfolio -->
+      <div class="form-step" *ngIf="currentStep === 5">
+        <h2 class="step-title">Portfolio</h2>
+        <p class="step-description">
+          Showcase your best work to attract potential clients
+        </p>
+
+        <div class="portfolio-section">
+          <div
+            *ngFor="let portfolio of portfolioArray.controls; let i = index"
+            class="portfolio-item"
+          >
+            <div class="portfolio-header">
+              <h4>Project {{ i + 1 }}</h4>
+              <button
+                type="button"
+                class="remove-portfolio-btn"
+                (click)="removePortfolioItem(i)"
+              >
+                Remove
+              </button>
+            </div>
+
+            <div [formGroupName]="i" class="portfolio-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Project Title</label>
+                  <input
+                    type="text"
+                    formControlName="title"
+                    class="form-input"
+                    placeholder="Project name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Project URL</label>
+                  <input
+                    type="url"
+                    formControlName="projectUrl"
+                    class="form-input"
+                    placeholder="https://..."
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea
+                  formControlName="description"
+                  class="form-textarea"
+                  placeholder="Describe the project, your role, and key achievements"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Technologies Used</label>
+                <input
+                  type="text"
+                  placeholder="Enter technology and press Enter"
+                  class="form-input"
+                  (keyup.enter)="
+                    addTechnology(i, $any($event.target).value);
+                    $any($event.target).value = ''
+                  "
+                />
+                <div class="technologies-list">
+                  <div
+                    *ngFor="
+                      let tech of getTechnologiesArray(i).controls;
+                      let techIndex = index
+                    "
+                    class="tech-tag"
+                  >
+                    {{ tech.value }}
+                    <button
+                      type="button"
+                      class="remove-btn"
+                      (click)="removeTechnology(i, techIndex)"
+                    >
+                      ×
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="add-portfolio-btn"
+            (click)="addPortfolioItem()"
+          >
+            + Add Portfolio Item
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 6: Education and Certifications -->
+      <div class="form-step" *ngIf="currentStep === 6">
+        <h2 class="step-title">Education & Certifications</h2>
+
+        <!-- Education Section -->
+        <div class="education-section">
+          <h3 class="section-title">Education</h3>
+
+          <div
+            *ngFor="let edu of educationArray.controls; let i = index"
+            class="education-item"
+          >
+            <div class="education-header">
+              <h4>Education {{ i + 1 }}</h4>
+              <button
+                type="button"
+                class="remove-btn"
+                (click)="removeEducation(i)"
+              >
+                Remove
+              </button>
+            </div>
+
+            <div [formGroupName]="i" class="education-form">
+              <div class="form-group">
+                <label class="form-label">Degree</label>
+                <input
+                  type="text"
+                  formControlName="degree"
+                  class="form-input"
+                  placeholder="e.g., Bachelor of Computer Science"
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Institution</label>
+                  <input
+                    type="text"
+                    formControlName="institution"
+                    class="form-input"
+                    placeholder="University/School name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Year</label>
+                  <input
+                    type="number"
+                    formControlName="year"
+                    class="form-input"
+                    placeholder="2020"
+                    min="1950"
+                    [max]="currentYear"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="add-education-btn"
+            (click)="addEducation()"
+          >
+            + Add Education
+          </button>
+        </div>
+
+        <!-- Certifications Section -->
+        <div class="certifications-section">
+          <h3 class="section-title">Certifications</h3>
+
+          <div
+            *ngFor="let cert of certificationsArray.controls; let i = index"
+            class="certification-item"
+          >
+            <div class="certification-header">
+              <h4>Certification {{ i + 1 }}</h4>
+              <button
+                type="button"
+                class="remove-btn"
+                (click)="removeCertification(i)"
+              >
+                Remove
+              </button>
+            </div>
+
+            <div [formGroupName]="i" class="certification-form">
+              <div class="form-group">
+                <label class="form-label">Certification Name</label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="form-input"
+                  placeholder="e.g., AWS Certified Solutions Architect"
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Issuing Organization</label>
+                  <input
+                    type="text"
+                    formControlName="issuer"
+                    class="form-input"
+                    placeholder="e.g., Amazon Web Services"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Date Obtained</label>
+                  <input
+                    type="date"
+                    formControlName="date"
+                    class="form-input"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="add-certification-btn"
+            (click)="addCertification()"
+          >
+            + Add Certification
+          </button>
+        </div>
+      </div>
+
+      <!-- Form Navigation -->
+      <div class="form-navigation">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          *ngIf="currentStep > 1"
+          (click)="previousStep()"
+        >
+          Previous
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          *ngIf="currentStep < totalSteps"
+          (click)="nextStep()"
+          [disabled]="!isStepValid(currentStep)"
+        >
+          Next
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-success"
+          *ngIf="currentStep === totalSteps"
+          [disabled]="!profileForm.valid || isSubmitting"
+        >
+          {{ isSubmitting ? "Creating Profile..." : "Create Profile" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

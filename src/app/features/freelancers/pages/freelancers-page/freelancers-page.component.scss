@@ -1,0 +1,230 @@
+.freelancers-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .header-content {
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: #6c757d;
+      margin: 0;
+    }
+  }
+}
+
+.search-filters-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+
+  .search-form {
+    .search-bar {
+      margin-bottom: 2rem;
+
+      .search-input-group {
+        display: flex;
+        max-width: 600px;
+        margin: 0 auto;
+
+        .search-input {
+          flex: 1;
+          padding: 1rem 1.5rem;
+          border: 2px solid #e9ecef;
+          border-radius: 50px 0 0 50px;
+          font-size: 1rem;
+          outline: none;
+
+          &:focus {
+            border-color: #4ecdc4;
+          }
+
+          &::placeholder {
+            color: #6c757d;
+          }
+        }
+
+        .search-btn {
+          padding: 1rem 1.5rem;
+          background: #4ecdc4;
+          border: 2px solid #4ecdc4;
+          border-radius: 0 50px 50px 0;
+          color: white;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: #3db8b0;
+            border-color: #3db8b0;
+          }
+
+          .search-icon {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+
+    .filters-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      align-items: end;
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+
+        .filter-label {
+          font-weight: 600;
+          color: #495057;
+          margin-bottom: 0.5rem;
+          font-size: 0.9rem;
+        }
+
+        .filter-input,
+        .filter-select {
+          padding: 0.75rem;
+          border: 1px solid #ced4da;
+          border-radius: 6px;
+          font-size: 0.9rem;
+          transition: all 0.3s ease;
+
+          &:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.1);
+          }
+        }
+
+        .rate-range {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          .rate-input {
+            flex: 1;
+          }
+
+          .rate-separator {
+            color: #6c757d;
+            font-weight: 600;
+          }
+        }
+
+        &.checkbox-group {
+          justify-content: center;
+
+          .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #495057;
+
+            .filter-checkbox {
+              width: 18px;
+              height: 18px;
+              accent-color: #4ecdc4;
+            }
+          }
+        }
+
+        .reset-btn {
+          padding: 0.75rem 1.5rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+.results-summary {
+  margin-bottom: 1.5rem;
+
+  .results-count {
+    font-size: 1.1rem;
+    color: #495057;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.freelancer-list-container {
+  min-height: 400px;
+}
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+
+  &.btn-outline {
+    background: transparent;
+    color: #4ecdc4;
+    border: 1px solid #4ecdc4;
+
+    &:hover {
+      background: #4ecdc4;
+      color: white;
+    }
+  }
+
+  &.btn-primary {
+    background: #4ecdc4;
+    color: white;
+
+    &:hover {
+      background: #3db8b0;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .freelancers-page {
+    padding: 1rem 0.5rem;
+  }
+
+  .page-header .header-content .page-title {
+    font-size: 2rem;
+  }
+
+  .search-filters-section {
+    padding: 1.5rem;
+
+    .search-form .filters-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+
+      .filter-group .rate-range {
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .rate-separator {
+          display: none;
+        }
+      }
+    }
+  }
+}
