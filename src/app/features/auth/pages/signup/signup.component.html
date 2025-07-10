@@ -1,0 +1,355 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <!-- Header -->
+    <div class="auth-header">
+      <div class="logo">
+        <span class="logo-text">Techmatch</span>
+        <span class="logo-accent">CC</span>
+      </div>
+      <button class="close-btn" (click)="goToLogin()">×</button>
+    </div>
+
+    <!-- Step 1: Account Type Selection -->
+    <div class="form-step" *ngIf="currentStep === 1">
+      <h1 class="step-title">Register for free</h1>
+      <p class="step-subtitle">Select your account type</p>
+
+      <form [formGroup]="step1Form">
+        <div class="account-type-selection">
+          <div
+            *ngFor="let type of accountTypes"
+            class="account-type-option"
+            [class.selected]="
+              step1Form.get('accountType')?.value === type.value
+            "
+            (click)="selectAccountType(type.value)"
+          >
+            <div class="option-content">
+              <h3 class="option-title">{{ type.title }}</h3>
+              <p class="option-description">{{ type.description }}</p>
+            </div>
+            <div class="radio-indicator">
+              <div class="radio-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary btn-full"
+          [disabled]="!step1Form.valid"
+          (click)="nextStep()"
+        >
+          Next
+        </button>
+
+        <p class="auth-switch">
+          Are you already registered?
+          <a (click)="goToLogin()" class="link">Login now</a>
+        </p>
+      </form>
+    </div>
+
+    <!-- Step 2: Credentials-->
+    <div class="form-step" *ngIf="currentStep === 2">
+      <h1 class="step-title">Credentials</h1>
+      <p class="step-subtitle">Step {{ currentStep }}/{{ totalSteps }}</p>
+
+      <form [formGroup]="step2Form">
+        <div class="form-group">
+          <label class="form-label"
+            >E-mail <span class="required">*</span></label
+          >
+          <input
+            type="email"
+            class="form-input"
+            formControlName="email"
+            placeholder="Enter your email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            >Password <span class="required">*</span></label
+          >
+          <input
+            type="password"
+            class="form-input"
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <div class="legal-section">
+          <h4>Legal</h4>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                formControlName="termsAccepted"
+                class="checkbox-input"
+              />
+              <span class="checkbox-custom"></span>
+              <strong>Terms and Conditions:</strong> I accept the
+              <a href="#" class="link">terms and conditions</a> of freelancermap
+              GmbH
+              <span class="required">*</span>
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                formControlName="privacyAccepted"
+                class="checkbox-input"
+              />
+              <span class="checkbox-custom"></span>
+              <strong>Privacy:</strong> I accept the
+              <a href="#" class="link">privacy policy</a> of freelancermap GmbH
+              <span class="required">*</span>
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                formControlName="newsletter"
+                class="checkbox-input"
+              />
+              <span class="checkbox-custom"></span>
+              <strong>Newsletter:</strong> I would like to receive the
+              freelancermap newsletter with IT news and information about the
+              market for freelancers.
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                formControlName="platformInfo"
+                class="checkbox-input"
+              />
+              <span class="checkbox-custom"></span>
+              <strong>Platform information:</strong> Please inform me about news
+              concerning freelancermap.com and special offers.
+            </label>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary btn-full"
+          [disabled]="!step2Form.valid"
+          (click)="nextStep()"
+        >
+          Next
+        </button>
+
+        <button type="button" class="btn-link" (click)="prevStep()">
+          Back
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 3: Personal Data -->
+    <div class="form-step" *ngIf="currentStep === 3">
+      <h1 class="step-title">Personal data</h1>
+      <p class="step-subtitle">Step {{ currentStep }}/{{ totalSteps }}</p>
+
+      <form [formGroup]="step3Form">
+        <div class="form-group">
+          <label class="form-label">Company (Optional)</label>
+          <input
+            type="text"
+            class="form-input"
+            formControlName="company"
+            placeholder="Company name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            >Gender <span class="required">*</span></label
+          >
+          <select class="form-select" formControlName="gender">
+            @for (option of genderOptions; track option.value) {
+            <option [value]="option.value">
+              {{ option.label }}
+            </option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            >First name <span class="required">*</span></label
+          >
+          <input
+            type="text"
+            class="form-input"
+            formControlName="firstName"
+            placeholder="First name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label"
+            >Last name <span class="required">*</span></label
+          >
+          <input
+            type="text"
+            class="form-input"
+            formControlName="lastName"
+            placeholder="Last name"
+          />
+        </div>
+        <div>{{ step3Form.errors }}</div>
+        <button
+          type="button"
+          class="btn btn-primary btn-full"
+          [disabled]="!step3Form.valid"
+          (click)="nextStep()"
+        >
+          Next
+        </button>
+
+        <button type="button" class="btn-link" (click)="prevStep()">
+          Back
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 4: Purpose (Only for Clients) -->
+    <!-- Step 4: Purpose (Only for Clients) -->
+    <div
+      class="form-step"
+      *ngIf="currentStep === 4 && registrationData.accountType === 'client'"
+    >
+      <h1 class="step-title">Welcome {{ userName }}</h1>
+      <p class="step-subtitle">
+        For what purpose are you looking for freelancers?
+      </p>
+      <p class="step-info">Step {{ currentStep }}/{{ totalSteps }}</p>
+
+      <form [formGroup]="step4Form">
+        <div class="purpose-selection">
+          <div
+            *ngFor="let option of purposeOptions"
+            class="purpose-option"
+            [class.selected]="step4Form.get('purpose')?.value === option.value"
+            (click)="selectPurpose(option.value)"
+          >
+            <div class="option-content">
+              <h3 class="option-title">{{ option.title }}</h3>
+              <p class="option-description">{{ option.description }}</p>
+            </div>
+            <div class="radio-indicator">
+              <div class="radio-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary btn-full"
+          [disabled]="!step4Form.valid"
+          (click)="nextStep()"
+        >
+          Next
+        </button>
+
+        <button type="button" class="btn-link" (click)="prevStep()">
+          Back
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 5: Company Address -->
+    <div class="form-step" *ngIf="currentStep === 5">
+      <h1 class="step-title">Company address</h1>
+      <p class="step-subtitle">Step {{ currentStep }}/{{ totalSteps }}</p>
+
+      <form [formGroup]="step5Form">
+        <div class="form-group">
+          <label class="form-label">Telephone number</label>
+          <input
+            type="tel"
+            class="form-input"
+            formControlName="phoneNumber"
+            placeholder="Phone number"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Street and house number</label>
+          <input
+            type="text"
+            class="form-input"
+            formControlName="streetAddress"
+            placeholder="Street address"
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">ZIP</label>
+            <input
+              type="text"
+              class="form-input"
+              formControlName="zipCode"
+              placeholder="ZIP code"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <input
+              type="text"
+              class="form-input"
+              formControlName="city"
+              placeholder="City"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <select class="form-select" formControlName="country">
+            <option value="">Select country</option>
+            <option *ngFor="let country of countries" [value]="country.value">
+              {{ country.label }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Placeholder for reCAPTCHA -->
+        <div class="recaptcha-container">
+          <div
+            class="recaptcha-placeholder"
+            (click)="onRecaptchaResolved('dummy-token')"
+          >
+            <input type="checkbox" class="recaptcha-checkbox" />
+            <span>I'm not a robot</span>
+            <div class="recaptcha-logo">reCAPTCHA</div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary btn-full"
+          [disabled]="!step5Form.valid || isSubmitting"
+          (click)="completeRegistration()"
+        >
+          {{ isSubmitting ? "Creating Account..." : "Complete registration" }}
+        </button>
+
+        <button type="button" class="btn-link" (click)="prevStep()">
+          Back
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
